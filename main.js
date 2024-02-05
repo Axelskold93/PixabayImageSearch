@@ -13,7 +13,6 @@ form.addEventListener('submit', async function(event){
     }
     let pictures = await getPictures(URL);
     displayImages(pictures.hits);
-    alert(URL);
 });
 
 async function getPictures(URL) {
@@ -23,7 +22,7 @@ async function getPictures(URL) {
 
 function displayImages(images) {
     let imageContainer = document.getElementById('image-container');
-    for(images in imageContainer){
+    while (imageContainer.firstChild){
         imageContainer.removeChild(imageContainer.firstChild);
     }
     images.forEach(image => {
