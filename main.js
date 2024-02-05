@@ -26,8 +26,24 @@ function displayImages(images) {
         imageContainer.removeChild(imageContainer.firstChild);
     }
     images.forEach(image => {
+        let imageItem = document.createElement('div');
+        imageItem.className = 'image-item';
         let imageElement = document.createElement('img');
         imageElement.src = image.webformatURL;
-        imageContainer.appendChild(imageElement);
+        imageElement.alt = image.tags;
+        imageElement.alt = image.user;
+
+        let photographerText = document.createElement('p');
+        let photographerInfo = document.createTextNode('Photographer: ' + image.user + '. ');
+        photographerText.appendChild(photographerInfo);
+        let tagText = document.createElement('p');
+        let imgTags = document.createTextNode('Tags: ' + image.tags + '.');
+        tagText.appendChild(imgTags)
+
+        imageItem.appendChild(imageElement);
+        imageItem.appendChild(photographerText);
+        imageItem.appendChild(tagText);
+        imageContainer.appendChild(imageItem);
     });
+
 }

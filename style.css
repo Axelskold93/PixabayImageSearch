@@ -38,8 +38,6 @@ header {
 main {
     display: flex;
     flex-direction: column;
-    margin-left: 200px;
-    margin-right: 200px;
     justify-content: center;
 }
 #image-container {
@@ -47,9 +45,16 @@ main {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 5px;
+    width: 100%;
     
 }
-#image-container img {
+.image-item {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image-item img {
     background-color: black;
     width: 200px;
     height: 200px;
@@ -57,13 +62,19 @@ main {
     border: solid 10px white;
     border-radius: 10px;
 }
-
+.image-item p {
+    color: white;
+    margin: 0px;
+    width: 250px;
+    text-align: center;
+    
+    
+}
 
 footer {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border: solid 1px pink;
 }
 #turn-page #previous-page, #next-page {
     border-radius: 5px;
