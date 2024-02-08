@@ -12,20 +12,12 @@ form.addEventListener('submit', async function(event){
     currentPage = 1;
     let searchTerm = document.getElementById('search-term').value;
     let selectedColor = document.getElementById('colors').value;
-    if (selectedColor === 'any-color') {
-        URLAnyColor = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(searchTerm)}&per_page=10`;
-        let pictures = await getPictures(URLAnyColor);
-        displayImages(pictures.hits);
-        currentURL = URLAnyColor;
-        hideOrShowPageButtons(currentPage, pictures);
-    }
-    else {
-        URLWithColor = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(selectedColor + ' ' + searchTerm)}&per_page=10`;
-        let pictures = await getPictures(URLWithColor);
-        displayImages(pictures.hits);
-        currentURL = URLWithColor;
-        hideOrShowPageButtons(currentPage, pictures);
-    }
+    let query = selectedColor === 'any-color' ? searchTerm : selectedColor + ' ' + searchTerm;
+    let URL = `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(query)}&per_page=10`;
+    currentURL = URL;
+    let pictures = await getPictures(URL);
+    displayImages(pictures.hits);
+    hideOrShowPageButtons(currentPage, pictures);
 });
 
 async function getPictures(URL) {
@@ -65,13 +57,17 @@ function hideOrShowPageButtons(currentPage, pictures) {
 
     if (currentPage > 1) {
         previousPageButton.style.display = 'block';
-    } else {
+    } 
+
+    else {
         previousPageButton.style.display = 'none';
     }
     
     if (currentPage < Math.ceil(pictures.totalHits / 10)) {
         nextPageButton.style.display = 'block';
-    } else {
+    } 
+    
+    else {
         nextPageButton.style.display = 'none';
     }
 }

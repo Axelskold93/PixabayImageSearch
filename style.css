@@ -28,6 +28,15 @@ header {
 #heading {
     color: white;
 }
+#word1 {
+    animation: fade 1s ease-in-out forwards;
+}
+#word2 {
+    animation: fade 1s ease-in-out 1s forwards;
+}
+#word3 {
+    animation: fade 2s ease-in-out 2s forwards;
+}
 
 #search-form input, #colors, #Go {
    border-radius: 5px;
@@ -40,12 +49,17 @@ header {
     margin-right: 50px;
     margin-top: 20px;
 }
+@keyframes fade {
+    from { opacity: 0;}
+    to { opacity: 1;}
+}
 .image-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 5px;
     text-align: center;
+    animation: fade 1s;
 }
 .image-item img {
     width: 200px;
@@ -55,6 +69,7 @@ header {
     border-radius: 10px;
     margin-left: 20px;
     margin-right: 20px;
+    background-color: white;
 }
 
 .image-item p {
@@ -62,6 +77,10 @@ header {
     width: 200px;
 
 }
+
+
+
+
 
 
 footer {
