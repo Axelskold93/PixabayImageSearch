@@ -2,12 +2,10 @@ let apiKey = "42146396-17c29595aecd509581a48434e";
 let form = document.querySelector('#search-form');
 let previousPageButton = document.getElementById('previous-page');
 let nextPageButton = document.getElementById('next-page');
-let URLWithColor;
-let URLAnyColor;
 let currentURL;
 let currentPage;
 
-form.addEventListener('submit', async function(event){
+form.addEventListener('submit', async function (event) {
     event.preventDefault();
     currentPage = 1;
     let searchTerm = document.getElementById('search-term').value;
@@ -23,11 +21,11 @@ form.addEventListener('submit', async function(event){
 async function getPictures(URL) {
     let response = await fetch(URL)
     return await response.json();
-    }
+}
 
 function displayImages(images) {
     let imageContainer = document.getElementById('image-container');
-    while (imageContainer.firstChild){
+    while (imageContainer.firstChild) {
         imageContainer.removeChild(imageContainer.firstChild);
     }
     images.forEach(image => {
@@ -57,16 +55,16 @@ function hideOrShowPageButtons(currentPage, pictures) {
 
     if (currentPage > 1) {
         previousPageButton.style.display = 'block';
-    } 
+    }
 
     else {
         previousPageButton.style.display = 'none';
     }
-    
+
     if (currentPage < Math.ceil(pictures.totalHits / 10)) {
         nextPageButton.style.display = 'block';
-    } 
-    
+    }
+
     else {
         nextPageButton.style.display = 'none';
     }
@@ -74,19 +72,19 @@ function hideOrShowPageButtons(currentPage, pictures) {
 
 
 
-nextPageButton.addEventListener('click', async function() {
+nextPageButton.addEventListener('click', async function () {
     currentPage++;
     pictures = await getPictures(`${currentURL}&page=${currentPage}`);
     displayImages(pictures.hits);
     hideOrShowPageButtons(currentPage, pictures)
 });
 
-previousPageButton.addEventListener('click', async function() {
+previousPageButton.addEventListener('click', async function () {
     if (currentPage > 1) {
         currentPage--;
         pictures = await getPictures(`${currentURL}&page=${currentPage}`);
-    displayImages(pictures.hits);
-    hideOrShowPageButtons(currentPage, pictures);    
+        displayImages(pictures.hits);
+        hideOrShowPageButtons(currentPage, pictures);
     }
 });
 
